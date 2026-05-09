@@ -42,7 +42,7 @@ export default function App() {
   const [loading, setLoading] = useState(true);
   const [apuestaAbierta, setApuestaAbierta] = useState(null);
 
-  const mercadoActual = MERCADOS.find(m => m.value === "1X2");
+  
   const stakeDefault = (BANKROLL_INICIAL * 0.02).toFixed(2);
 
   const [form, setForm] = useState({
@@ -100,17 +100,12 @@ export default function App() {
     return { name: `#${i + 1}`, bankroll: parseFloat(saldo.toFixed(2)) };
   });
 
-  function getMercadoLabel(value) {
-    return MERCADOS.find(m => m.value === value)?.label || value;
-  }
+  
 
   function getLineasMercado(mercadoValue) {
     return MERCADOS.find(m => m.value === mercadoValue)?.opciones || [];
   }
 
-  function tieneLinea(mercadoValue) {
-    return !!MERCADOS.find(m => m.value === mercadoValue)?.linea;
-  }
 
   function handleMercadoChange(nuevoMercado) {
     const lineas = getLineasMercado(nuevoMercado);
@@ -254,7 +249,7 @@ export default function App() {
     </div>
   );
 
-  const mercadoInfo = MERCADOS.find(m => m.value === form.mercado);
+  
   const selecciones = SELECCIONES[form.mercado] || ["Selección"];
   const lineas = getLineasMercado(form.mercado);
   const esCombinada = form.mercado === "combinada" || form.mercado === "betbuilder";
